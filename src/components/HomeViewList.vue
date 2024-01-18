@@ -3,14 +3,14 @@
     <div class="ui large header">{{ post.title }}</div>
     <img
       :src="`${post.image}`"
-      :alt="`${post.image}`"
+      :alt="`${post.title}`"
       class="ui huge image centered post_image"
     />
     <div class="post_btn">
       <button class="ui blue button" @click="openItem">
         <span>Edit</span>
       </button>
-      <router-link :to="`/viewPost/${this.id}`" class="post_view"
+      <router-link :to="`/viewPost/${this.post.id}`" class="post_view"
         >View</router-link
       >
       <button class="ui red button" @click="deleteItem">
@@ -23,13 +23,13 @@
 <script>
 export default {
   name: "HomeViewList",
-  props: ["post", "id"],
+  props: ["post"],
   methods: {
     openItem() {
-      this.$emit("toggleCard", this.id);
+      this.$emit("toggleCard", this.post.id);
     },
     deleteItem() {
-      this.$store.dispatch("deleteCard", this.id);
+      this.$store.dispatch("deleteCard", this.post.id);
     },
   },
 };

@@ -1,13 +1,19 @@
 <template>
   <div class="container container_view_post">
-    <div class="post ui segment">
-      <div class="ui huge header centered">{{ title }}</div>
-      <img
-        :src="image"
-        :alt="title"
-        class="ui huge image rounded centered post_image"
-      />
-      <p>{{ description }}</p>
+    <div class="ui cards post_cards">
+      <div class="ui centered card posts_card">
+        <div class="image">
+          <img
+            :src="image"
+            :alt="title"
+            class="ui huge image rounded centered post_image"
+          />
+        </div>
+        <div class="content">
+          <div class="header">{{ title }}</div>
+          <div class="description">{{ description }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -46,9 +52,17 @@ export default {
 
 <style>
 .post_image {
-  margin-bottom: 2.4rem;
+  max-width: 70rem;
+  max-height: 70rem;
 }
 .container_view_post {
   margin-bottom: 4.8rem;
+}
+.post_cards {
+  width: 70rem;
+}
+.posts_card {
+  width: 100% !important;
+  height: 100% !important;
 }
 </style>

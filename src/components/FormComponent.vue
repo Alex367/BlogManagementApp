@@ -43,6 +43,9 @@ export default {
         description: this.newDescription,
       });
       this.sendFormStatus = true;
+      this.newTitle = "";
+      this.newDescription = "";
+      this.newImage = "";
       const time = setTimeout(() => (this.sendFormStatus = false), 2000);
       return () => clearTimeout(time);
     },

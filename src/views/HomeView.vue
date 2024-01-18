@@ -6,7 +6,6 @@
         <HomeViewList
           v-for="post in getAllData"
           :post="post"
-          :id="post.id"
           :key="post.id"
           @toggleCard="openCard"
         />
