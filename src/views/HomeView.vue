@@ -1,10 +1,10 @@
 <template>
   <main class="container container_home">
     <div class="ui huge header">List Blog Posts</div>
-    <template v-if="posts.length">
+    <template v-if="getAllData.length">
       <ul class="home_blogs">
         <HomeViewList
-          v-for="post in posts"
+          v-for="post in getAllData"
           :post="post"
           :id="post.id"
           :key="post.id"
@@ -31,6 +31,7 @@
 <script>
 import HomeViewList from "@/components/HomeViewList.vue";
 import PopupMenu from "@/components/PopupMenu.vue";
+import {mapGetters} from 'vuex';
 
 export default {
   name: "HomeView",
@@ -41,9 +42,8 @@ export default {
     };
   },
   computed: {
-    posts() {
-      return this.$store.getters.getAllData;
-    },
+  // link on getter
+    ...mapGetters(['getAllData'])
   },
   components: {
     HomeViewList,
@@ -52,7 +52,7 @@ export default {
   methods: {
     openCard(cardId) {
       this.buttonTrigger = !this.buttonTrigger;
-      this.openedCard = this.posts.filter((item) => item.id === cardId);
+      this.openedCard = this.getAllData.filter((item) => item.id === cardId);
     },
     closeCard() {
       this.buttonTrigger = !this.buttonTrigger;

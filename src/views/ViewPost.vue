@@ -2,7 +2,11 @@
   <div class="container container_view_post">
     <div class="post ui segment">
       <div class="ui huge header centered">{{ title }}</div>
-      <img :src="image" :alt="title" class="ui huge image rounded centered post_image" />
+      <img
+        :src="image"
+        :alt="title"
+        class="ui huge image rounded centered post_image"
+      />
       <p>{{ description }}</p>
     </div>
   </div>
@@ -10,6 +14,7 @@
 
 <script>
 import { useRoute } from "vue-router";
+import { mapGetters } from "vuex";
 
 export default {
   name: "ViewPost",
@@ -20,10 +25,13 @@ export default {
       image: "",
     };
   },
+  computed: {
+    ...mapGetters(["getAllData"]),
+  },
   created() {
     const route = useRoute();
     const id = route.params.id;
-    const res = this.$store.getters.getAllData.filter(
+    const res = this.getAllData.filter(
       (item) => String(item.id) === String(id)
     );
     if (res.length === 0 || !res) {
@@ -37,7 +45,10 @@ export default {
 </script>
 
 <style>
-.post_image{
+.post_image {
   margin-bottom: 2.4rem;
+}
+.container_view_post {
+  margin-bottom: 4.8rem;
 }
 </style>
